@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:700|Poppins:400');
+
+$themes: (
+  light: (
+    text: #14100b,
+    background: #faf8f5,
+    primary: #b09269,
+    secondary: #9ecc9e,
+    accent: #79b999,
+  ),
+  dark: (
+    text: #f4f0eb,
+    background: #0a0805,
+    primary: #96794f,
+    secondary: #336133,
+    accent: #468666,
+  ),
+);
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Poppins';
+  font-weight: 700;
+}
+
+html {
+  font-size: 100%; /* 16px */
+}
+
+h1 {
+  font-size: 4.21rem; /* 67.36px */
+}
+
+h2 {
+  font-size: 3.158rem; /* 50.56px */
+}
+
+h3 {
+  font-size: 2.369rem; /* 37.92px */
+}
+
+h4 {
+  font-size: 1.777rem; /* 28.48px */
+}
+
+h5 {
+  font-size: 1.333rem; /* 21.28px */
+}
+
+small {
+  font-size: 0.75rem; /* 12px */
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --text-color: #{map-get(map-get($themes, light), text)};
+    --background-color: #{map-get(map-get($themes, light), background)};
+    --primary-color: #{map-get(map-get($themes, light), primary)};
+    --secondary-color: #{map-get(map-get($themes, light), secondary)};
+    --accent-color: #{map-get(map-get($themes, light), accent)};
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #{map-get(map-get($themes, dark), text)};
+    --background-color: #{map-get(map-get($themes, dark), background)};
+    --primary-color: #{map-get(map-get($themes, dark), primary)};
+    --secondary-color: #{map-get(map-get($themes, dark), secondary)};
+    --accent-color: #{map-get(map-get($themes, dark), accent)};
+  }
+}
+
+:root {
+  font-family: 'Poppins';
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  font-family: 'Poppins';
+  font-weight: 400;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--primary-color);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: var(--secondary-color);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
