@@ -1,0 +1,16 @@
+.nav-left, .nav-right {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-left {
+  gap: 12px;
+}
+
+.auth-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

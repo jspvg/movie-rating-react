@@ -1,9 +1,10 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import './App.css';
 import Auth from './pages/auth';
 import Home from './pages/home';
 import Rated from './pages/rated';
 import Root from './pages/Root';
+import './App.css';
+import '../src/styles/components.scss';
 
 const Router = createBrowserRouter([
   {
