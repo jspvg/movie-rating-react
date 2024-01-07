@@ -1,4 +1,5 @@
 import { DisplayData } from '../utils/types';
+import { StarRating } from './StarRating';
 
 type DisplayCardProps = DisplayData;
 
@@ -12,7 +13,7 @@ export const DisplayCard = ({
       <img src={poster} alt="poster" />
       <h5>{title}</h5>
       <p>{description}</p>
-      <button>Click me</button>
+      <StarRating />
     </div>
   );
 };

@@ -141,3 +141,11 @@ nav {
 p {
   font-size: small;
 }
+
+select {
+  margin: 5px;
+  color: var(--text-color);
+  background-color: var(--accent-color);
+  border-radius: 7px;
+  font-size: small;
+}
