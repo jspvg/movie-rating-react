@@ -49,6 +49,9 @@ h4 {
 h5 {
   font-size: 1.333rem; /* 21.28px */
 }
+h6 {
+  font-size: 1rem;
+}
 
 small {
   font-size: 0.75rem; /* 12px */
@@ -148,4 +151,8 @@ select {
   background-color: var(--accent-color);
   border-radius: 7px;
   font-size: small;
+}
+
+span {
+  font-size: 0.6rem;
 }

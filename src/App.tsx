@@ -8,6 +8,8 @@ import '../src/styles/components.scss';
 import PrivateRoute from './components/PrivateRoute';
 import { AuthProvider } from './store/AuthProvider';
 import { PageNotFound } from './pages/404';
+import { Movie } from './pages/movie';
+import { TVShow } from './pages/tvshow';
 
 const Router = createBrowserRouter([
   {
@@ -28,6 +30,22 @@ const Router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Rated />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/movie/:id',
+        element: (
+          <PrivateRoute>
+            <Movie />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/tvshow/:id',
+        element: (
+          <PrivateRoute>
+            <TVShow />
           </PrivateRoute>
         ),
       },

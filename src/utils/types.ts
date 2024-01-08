@@ -1,5 +1,14 @@
+export enum DisplayType {
+  Movies = 'movies',
+  TVShows = 'tvshows',
+}
+
 export type DisplayData = {
-  poster: string;
-  title: string;
-  description: string;
+  id: number;
+  overview: string;
+  poster_path: string;
+  title?: string;
+  name?: string;
+  vote_average: number;
+  release_date: string;
 };
