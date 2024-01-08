@@ -15,9 +15,9 @@ export const DisplayGrid = ({ dataset, displayType }: DisplayGridProps) => {
           to={`/${displayType === DisplayType.Movies ? `movie` : `tvshow`}/${
             data.id
           }`}
+          key={data.id}
         >
           <DisplayCard
-            key={data.id}
             id={data.id}
             overview={data.overview}
             poster_path={data.poster_path}

@@ -34,7 +34,7 @@ const Home = () => {
         </a>
       </div>
       {isLoadingMovies || isLoadingTv ? (
-        <div>Loading data...</div>
+        <div className='center-content'>Loading data...</div>
       ) : (
         <>
           {displayType === DisplayType.Movies ? (
