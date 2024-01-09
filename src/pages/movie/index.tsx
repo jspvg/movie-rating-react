@@ -59,7 +59,7 @@ export const Movie = () => {
               ))}
             </div>
 
-            <p>{data.runtime}min</p>
+            <p>Runtime: {data.runtime}min</p>
           </div>
           <div className="grid-right">
             <div className="title-bar">
@@ -71,7 +71,7 @@ export const Movie = () => {
               <Icon icon="solar:star-bold" color="#e4e740" />
               <span>({data.vote_count})</span>
             </div>
-            <span>{data.release_date}</span>
+            <span>Released: {data.release_date}</span>
             <p>{data.overview}</p>
           </div>
         </div>
