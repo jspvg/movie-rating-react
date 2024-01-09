@@ -33,7 +33,7 @@ export const DisplayGrid = ({ dataset, displayType }: DisplayGridProps) => {
               }
             />
           </Link>
-          <StarRating />
+          <StarRating displayType={displayType} id={data.id} />
         </div>
       ))}
     </div>

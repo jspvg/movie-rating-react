@@ -1,11 +1,47 @@
+import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { z } from 'zod';
+import { toast } from 'react-toastify';
+import { rateMovie, rateTVShow } from '../utils/api/mutations';
+import { DisplayType } from '../utils/types';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ratingSchema = z.number().min(0).max(10).step(0.5);
 
-export const StarRating = () => {
+export const StarRating = ({
+  displayType,
+  id,
+}: {
+  displayType: DisplayType;
+  id: number;
+}) => {
   const [rating, setRating] = useState<number | null>(null);
   const [error, setError] = useState('');
+  const onSuccess = () =>
+    toast.success('Successfully rated!', {
+      theme: 'light',
+      autoClose: 2000,
+    });
+  const onError = () =>
+    toast.error('Something went wrong!', {
+      theme: 'light',
+      autoClose: 2000,
+    });
+  const { mutate: rateMovieMutation } = useMutation({
+    mutationKey: ['rateMovie'],
+    mutationFn: (id: number) => rateMovie(id, rating),
+    onSuccess,
+    onError,
+  });
+  const { mutate: rateTVShowMutation } = useMutation({
+    mutationKey: ['rateTVShow'],
+    mutationFn: (id: number) => rateTVShow(id, rating),
+    onSuccess,
+    onError,
+  });
+
+  const rate =
+    displayType === DisplayType.Movies ? rateMovieMutation : rateTVShowMutation;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value);
@@ -22,13 +58,12 @@ export const StarRating = () => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     event.preventDefault();
-    console.log(rating);
+    rate(id);
   };
 
   return (
     <div className="star-rating">
       {error && <span style={{ color: 'red' }}>{error}</span>}
-
       <form>
         <input
           type="number"

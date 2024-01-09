@@ -17,6 +17,14 @@ $themes: (
   ),
 );
 
+.Toastify__toast-theme--light {
+  background: var(--background-color);
+  color: var(--text-color);
+  --toastify-color-success: var(--accent-color);
+  --toastify-icon-color-success: var(--accent-color);
+  --toastify-color-progress-success: var(--accent-color);
+}
+
 h1,
 h2,
 h3,
