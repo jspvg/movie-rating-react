@@ -145,14 +145,21 @@ p {
   font-size: small;
 }
 
-select {
+input {
   margin: 5px;
   color: var(--text-color);
   background-color: var(--accent-color);
   border-radius: 7px;
-  font-size: small;
+  width: 2rem;
+  font-size: 0.7rem;
 }
 
 span {
   font-size: 0.6rem;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
 }

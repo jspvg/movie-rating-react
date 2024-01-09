@@ -1,8 +1,8 @@
 import { Icon } from '@iconify/react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { fetchTVShowData } from './query';
 import { useEffect } from 'react';
+import { fetchTVShowData } from '../../utils/api/queries';
 
 type Genre = {
   id: number;

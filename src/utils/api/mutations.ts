@@ -1,6 +1,6 @@
-import { MutationData } from '.';
+import { AuthMutationData } from "../types";
 
-export const mutationLogin = async (): Promise<MutationData> => {
+export const mutationLogin = async (): Promise<AuthMutationData> => {
   try {
     const response = await fetch(
       'https://api.themoviedb.org/3/authentication/guest_session/new',
@@ -17,7 +17,7 @@ export const mutationLogin = async (): Promise<MutationData> => {
       throw new Error('Server response was not ok');
     }
 
-    const data: MutationData = await response.json();
+    const data: AuthMutationData = await response.json();
     return data;
   } catch (err) {
     console.error(err);

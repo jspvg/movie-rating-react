@@ -1,30 +1,48 @@
-import { Icon } from '@iconify/react';
 import { useState } from 'react';
+import { z } from 'zod';
+
+const ratingSchema = z.number().min(0).max(10).step(0.5);
 
 export const StarRating = () => {
-  const [rating, setRating] = useState(0);
-  //const maxStars = 10;
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setRating(Number(event.target.value));
+  const [rating, setRating] = useState<number | null>(null);
+  const [error, setError] = useState('');
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(event.target.value);
+    try {
+      ratingSchema.parse(value);
+      setRating(value);
+      setError('');
+    } catch (err) {
+      setError('Please enter a number from 0 to 10 in 0.5 increments.');
+    }
   };
+
+  const handleSubmit = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    event.preventDefault();
+    console.log(rating);
+  };
+
   return (
     <div className="star-rating">
-      <select id={String(Math.random())} value={rating} onChange={handleChange}>
-        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
-          <option id={String(value)} key={value} value={value}>
-            {value}
-          </option>
-        ))}
-      </select>
+      {error && <span style={{ color: 'red' }}>{error}</span>}
 
-      {rating > 0 ? (
-        <>
-          <p>{rating}</p>
-          <Icon icon="solar:star-bold" color="#e4e740" />
-        </>
-      ) : (
-        <Icon icon="solar:star-line-duotone" color="#E4E740" />
-      )}
+      <form>
+        <input
+          type="number"
+          id={String(Math.random())}
+          value={rating === null ? '' : rating}
+          min="0"
+          max="10"
+          step="0.5"
+          onChange={handleChange}
+        />
+        <button className="submit-btn" onClick={handleSubmit}>
+          submit
+        </button>
+      </form>
     </div>
   );
 };

@@ -1,14 +1,9 @@
 import { UseMutationResult, useMutation } from '@tanstack/react-query';
-import { mutationLogin } from './mutation';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../store/AuthProvider';
-
-export type MutationData = {
-  success: boolean;
-  guest_session_id: string;
-  expires_at: string;
-};
+import { AuthMutationData } from '../../utils/types';
+import { mutationLogin } from '../../utils/api/mutations';
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -17,7 +12,7 @@ const Auth = () => {
   const mutationOptions = {
     mutationKey: ['login'],
     mutationFn: mutationLogin,
-    onSuccess: (data: MutationData) => {
+    onSuccess: (data: AuthMutationData) => {
       if (authContext) {
         const { setIsAuthenticated } = authContext;
         localStorage.setItem('guest_session_id', data.guest_session_id);
@@ -27,9 +22,9 @@ const Auth = () => {
     },
   };
 
-  const { mutate } = useMutation<MutationData>(
+  const { mutate } = useMutation<AuthMutationData>(
     mutationOptions,
-  ) as UseMutationResult<MutationData, unknown, void, unknown>;
+  ) as UseMutationResult<AuthMutationData, unknown, void, unknown>;
 
   if (!authContext) {
     console.error('Context is null');
