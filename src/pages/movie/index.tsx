@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { fetchMovieData } from './query';
 import { useEffect } from 'react';
 
-type genre = {
+type Genre = {
   id: number;
   name: string;
 };
@@ -15,7 +15,7 @@ type movieData = {
   overview: string;
   poster_path: string;
   adult: boolean;
-  genres: genre[];
+  genres: Genre[];
   release_date: string;
   runtime: number;
   vote_average: number;
@@ -53,7 +53,12 @@ export const Movie = () => {
               src={`https://image.tmdb.org/t/p/original/${data.poster_path}`}
               alt={`${data.title} poster`}
             />
-            <span>{data.genres[0].name}</span>
+            <div className='genres'>
+              {data.genres.map((genre) => (
+                <span key={genre.id}>{genre.name}</span>
+              ))}
+            </div>
+
             <p>{data.runtime}min</p>
           </div>
           <div className="grid-right">
