@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { fetchMovies, fetchTVShows } from './query';
 import { DisplayGrid } from './DisplayGrid';
 import { DisplayType } from '../../utils/types';
 import { useQuery } from '@tanstack/react-query';
+import { TabSwitch } from '../../components/TabSwitch';
+import { fetchMovies, fetchTVShows } from '../../utils/api/queries';
 
 const Home = () => {
   const [displayType, setDisplayType] = useState<DisplayType>(
@@ -16,31 +17,31 @@ const Home = () => {
     queryKey: ['tvshows'],
     queryFn: fetchTVShows,
   });
+  const rated = false;
+
+  const handleTabClick = (selectedDisplayType: DisplayType) => {
+    setDisplayType(selectedDisplayType);
+  };
 
   return (
     <div className="home-page">
-      <div className="switch">
-        <a
-          onClick={() => setDisplayType(DisplayType.Movies)}
-          className={displayType === DisplayType.Movies ? 'underline' : ''}
-        >
-          Movies
-        </a>
-        <a
-          onClick={() => setDisplayType(DisplayType.TVShows)}
-          className={displayType === DisplayType.TVShows ? 'underline' : ''}
-        >
-          TV Shows
-        </a>
-      </div>
+      <TabSwitch displayType={displayType} onTabClick={handleTabClick} />
       {isLoadingMovies || isLoadingTv ? (
-        <div className='center-content'>Loading data...</div>
+        <div className="center-content">Loading data...</div>
       ) : (
         <>
           {displayType === DisplayType.Movies ? (
-            <DisplayGrid dataset={movieData.results} displayType={DisplayType.Movies} />
+            <DisplayGrid
+              dataset={movieData.results}
+              displayType={DisplayType.Movies}
+              rated={rated}
+            />
           ) : (
-            <DisplayGrid dataset={tvData.results} displayType={DisplayType.TVShows} />
+            <DisplayGrid
+              dataset={tvData.results}
+              displayType={DisplayType.TVShows}
+              rated={rated}
+            />
           )}
         </>
       )}

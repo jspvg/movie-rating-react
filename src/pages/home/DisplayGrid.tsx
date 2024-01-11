@@ -6,9 +6,14 @@ import { StarRating } from '../../components/StarRating';
 type DisplayGridProps = {
   dataset: DisplayData[];
   displayType: DisplayType;
+  rated: boolean;
 };
 
-export const DisplayGrid = ({ dataset, displayType }: DisplayGridProps) => {
+export const DisplayGrid = ({
+  dataset,
+  displayType,
+  rated,
+}: DisplayGridProps) => {
   return (
     <div className="display-grid">
       {dataset.map((data) => (
@@ -33,7 +38,11 @@ export const DisplayGrid = ({ dataset, displayType }: DisplayGridProps) => {
               }
             />
           </Link>
-          <StarRating displayType={displayType} id={data.id} />
+          {rated ? (
+            <span>Your rating: {data.rating}</span>
+          ) : (
+            <StarRating displayType={displayType} id={data.id} />
+          )}
         </div>
       ))}
     </div>

@@ -44,8 +44,9 @@ export const rateMovie = async (movieId: number, rating: number | null) => {
     if (!response.ok) {
       throw new Error('Server response was not ok');
     }
+    console.log(rating);
 
-    const data: AuthMutationData = await response.json();
+    const data = await response.json();
     return data;
   } catch (err) {
     console.error(err);
@@ -73,7 +74,7 @@ export const rateTVShow = async (tvShowId: number, rating: number | null) => {
       throw new Error('Server response was not ok');
     }
 
-    const data: AuthMutationData = await response.json();
+    const data = await response.json();
     return data;
   } catch (err) {
     console.error(err);
