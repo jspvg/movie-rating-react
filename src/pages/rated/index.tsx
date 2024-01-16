@@ -23,7 +23,7 @@ type Result = {
   rating: number;
 };
 
-type RatedMoviesData = {
+export type RatedMoviesData = {
   page: number;
   results: Result[];
   total_pages: number;

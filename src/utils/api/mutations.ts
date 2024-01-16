@@ -26,32 +26,25 @@ export const mutationLogin = async (): Promise<AuthMutationData> => {
 };
 
 export const rateMovie = async (movieId: number, rating: number | null) => {
-  try {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/rating?guest_session_id=${localStorage.getItem(
-        'guest_session_id',
-      )}&api_key=${import.meta.env.VITE_API_KEY}`,
-      {
-        method: 'POST',
-        headers: {
-          accept: 'application/json',
-          'Content-Type': 'application/json;charset=utf-8',
-          Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
-        },
-        body: `{"value": ${rating}}`,
-      },
-    );
-    if (!response.ok) {
-      throw new Error('Server response was not ok');
-    }
-    console.log(rating);
+  const options = {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      'Content-Type': 'application/json;charset=utf-8',
+      Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`,
+    },
+    body: `{"value":"${rating}"}`,
+  };
 
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.error(err);
-    throw err;
-  }
+  fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}/rating?guest_session_id=${localStorage.getItem(
+      'guest_session_id',
+    )}&api_key=${import.meta.env.VITE_API_KEY}`,
+    options,
+  )
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
 };
 
 export const rateTVShow = async (tvShowId: number, rating: number | null) => {
